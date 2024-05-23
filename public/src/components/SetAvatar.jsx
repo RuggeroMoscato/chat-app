@@ -1,13 +1,12 @@
-import React from "react";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import loader from "";
-import { setAvatarRoute } from "../APIroutes";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
-
+import axios from "axios";
+import { Buffer } from "buffer";
+import loader from "../assets/loader.gif";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import { setAvatarRoute } from "../APIroutes";
 export default function SetAvatar() {
   const api = `https://api.multiavatar.com/4645646`;
   const navigate = useNavigate();
@@ -29,7 +28,7 @@ export default function SetAvatar() {
 
   const setProfilePicture = async () => {
     if (selectedAvatar === undefined) {
-      toast.error("Seleziona un avatar", toastOptions);
+      toast.error("Please select an avatar", toastOptions);
     } else {
       const user = await JSON.parse(
         localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
@@ -48,7 +47,7 @@ export default function SetAvatar() {
         );
         navigate("/");
       } else {
-        toast.error("Errore.", toastOptions);
+        toast.error("Error setting avatar. Please try again.", toastOptions);
       }
     }
   };
@@ -74,7 +73,7 @@ export default function SetAvatar() {
       ) : (
         <Container>
           <div className="title-container">
-            <h1>Scegli un avatar per la tua immagine di profilo</h1>
+            <h1>Pick an Avatar as your profile picture</h1>
           </div>
           <div className="avatars">
             {avatars.map((avatar, index) => {
@@ -95,7 +94,7 @@ export default function SetAvatar() {
             })}
           </div>
           <button onClick={setProfilePicture} className="submit-btn">
-            Scegli come immagine di profilo
+            Set as Profile Picture
           </button>
           <ToastContainer />
         </Container>
@@ -103,6 +102,7 @@ export default function SetAvatar() {
     </>
   );
 }
+
 
 const Container = styled.div`
   display: flex;
@@ -114,4 +114,3 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
 `;
-
