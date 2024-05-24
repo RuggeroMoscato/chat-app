@@ -64,7 +64,7 @@ export default function SetAvatar() {
     setAvatars(data);
     setIsLoading(false);
   }, []);
-  return (
+  return ()=>{
     <>
       {isLoading ? (
         <Container>
@@ -73,7 +73,7 @@ export default function SetAvatar() {
       ) : (
         <Container>
           <div className="title-container">
-            <h1>Pick an Avatar as your profile picture</h1>
+            <h1>Scegli un avatar</h1>
           </div>
           <div className="avatars">
             {avatars.map((avatar, index) => {
@@ -94,13 +94,13 @@ export default function SetAvatar() {
             })}
           </div>
           <button onClick={setProfilePicture} className="submit-btn">
-            Set as Profile Picture
+            Scegli la tua foto profilo
           </button>
           <ToastContainer />
         </Container>
       )}
     </>
-  );
+  };
 }
 
 
