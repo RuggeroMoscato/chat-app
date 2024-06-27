@@ -5,6 +5,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { logoutRoute } from "../APIroutes";
 
+
 export default function Logout() {
   const navigate = useNavigate();
   const handleClick = async () => {
@@ -37,4 +38,4 @@ const Button = styled.button`
     font-size: 1.3rem;
     color: #ebe7ff;
   }
-`; 
+`;

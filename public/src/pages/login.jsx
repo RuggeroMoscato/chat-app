@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginRoute } from "../APIroutes";
 
-
 export default function Login() {
   const navigate = useNavigate();
   const [values, setValues] = useState({ username: "", password: "" });
@@ -31,10 +30,10 @@ export default function Login() {
   const validateForm = () => {
     const { username, password } = values;
     if (username === "") {
-      toast.error("Email e password richiesti.", toastOptions);
+      toast.error("Email and Password is required.", toastOptions);
       return false;
     } else if (password === "") {
-      toast.error("Email e password richiesti.", toastOptions);
+      toast.error("Email and Password is required.", toastOptions);
       return false;
     }
     return true;
@@ -68,7 +67,7 @@ export default function Login() {
         <form action="" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
             <img src={Logo} alt="logo" />
-            <h1>Prismed chat</h1>
+            <h1>snappy</h1>
           </div>
           <input
             type="text"
@@ -83,9 +82,9 @@ export default function Login() {
             name="password"
             onChange={(e) => handleChange(e)}
           />
-          <button type="submit">Accedi</button>
+          <button type="submit">Log In</button>
           <span>
-            Non hai un account? <Link to="/register">Registrati</Link>
+            Don't have an account ? <Link to="/register">Create One.</Link>
           </span>
         </form>
       </FormContainer>

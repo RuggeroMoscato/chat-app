@@ -16,21 +16,21 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Connesso correttamente");
+    console.log("DB Connetion Successfull");
   })
   .catch((err) => {
     console.log(err.message);
   });
 
 app.get("/ping", (_req, res) => {
-  return res.json({ msg: "Ping corretto" });
+  return res.json({ msg: "Ping Successful" });
 });
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
 const server = app.listen(process.env.PORT, () =>
-  console.log(`Server iniziato su ${process.env.PORT}`)
+  console.log(`Server started on ${process.env.PORT}`)
 );
 const io = socket(server, {
   cors: {

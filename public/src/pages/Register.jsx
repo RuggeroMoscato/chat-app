@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerRoute } from "../APIroutes";
 
+
 export default function Register() {
   const navigate = useNavigate();
   const toastOptions = {
@@ -37,27 +38,27 @@ export default function Register() {
     const { password, confirmPassword, username, email } = values;
     if (password !== confirmPassword) {
       toast.error(
-        "La Password deve essere la stessa",
+        "Password and confirm password should be same.",
         toastOptions
       );
       return false;
     } else if (username.length < 3) {
       toast.error(
-        "Lo username deve avere più di 3 caratteri",
+        "Username should be greater than 3 characters.",
         toastOptions
       );
       return false;
     } else if (password.length < 8) {
       toast.error(
-        "La password deve avere 8 caratteri o più",
+        "Password should be equal or greater than 8 characters.",
         toastOptions
       );
       return false;
     } else if (email === "") {
-      toast.error("Email richiesta", toastOptions);
+      toast.error("Email is required.", toastOptions);
       return false;
     }
-    
+
     return true;
   };
 
@@ -90,7 +91,7 @@ export default function Register() {
         <form action="" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
             <img src={Logo} alt="logo" />
-            <h1>Prismed chat</h1>
+            <h1>snappy</h1>
           </div>
           <input
             type="text"
@@ -112,13 +113,13 @@ export default function Register() {
           />
           <input
             type="password"
-            placeholder="Conferma la password"
+            placeholder="Confirm Password"
             name="confirmPassword"
             onChange={(e) => handleChange(e)}
           />
-          <button type="submit">Crea uno user</button>
+          <button type="submit">Create User</button>
           <span>
-            Hai già un account? <Link to="/login">Accedi.</Link>
+            Already have an account ? <Link to="/login">Login.</Link>
           </span>
         </form>
       </FormContainer>
