@@ -21,13 +21,25 @@ export default function SetAvatar() {
     draggable: true,
     theme: "dark",
   };
-
-  useEffect(
-    async () => {
+  const getFetch =     async () => {
+    const data = [];
+    for (let i = 0; i < 4; i++) {
+      const image = await axios.get(
+        `${api}/${Math.round(Math.random() * 1000)}`
+      );
+      const buffer = new Buffer(image.data);
+      data.push(buffer.toString("base64"));
+    }
+    setAvatars(data);
+    setIsLoading(false);
+  }
+  const navigateLogin =     async () => {
     if (!localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY))
       navigate("/login");
-  }, []);
-
+  }
+  useEffect(() =>{
+    navigateLogin();
+   },[])
   const setProfilePicture = async () => {
     if (selectedAvatar === undefined) {
       toast.error("Please select an avatar", toastOptions);
@@ -54,19 +66,10 @@ export default function SetAvatar() {
     }
   };
 
-  useEffect(
-   async () => {
-    const data = [];
-    for (let i = 0; i < 4; i++) {
-      const image = await axios.get(
-        `${api}/${Math.round(Math.random() * 1000)}`
-      );
-      const buffer = new Buffer(image.data);
-      data.push(buffer.toString("base64"));
-    }
-    setAvatars(data);
-    setIsLoading(false);
-  }, []);
+  useEffect( () => {
+    getFetch();
+  }
+, []);
   return ()=>{
     <>
       {isLoading ? (

@@ -10,9 +10,7 @@ export default function ChatContainer({ currentChat, socket }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
-
-  useEffect(
-    async () => {
+  const getFetch = async () => {
     const data = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
     );
@@ -21,8 +19,11 @@ export default function ChatContainer({ currentChat, socket }) {
       to: currentChat._id,
     });
     setMessages(response.data);
-  }, [currentChat]);
+  };
 
+  useEffect(() => {
+    getFetch();
+  }, []);
   useEffect(() => {
     const getCurrentChat = async () => {
       if (currentChat) {
@@ -107,7 +108,6 @@ export default function ChatContainer({ currentChat, socket }) {
     </Container>
   );
 }
-
 
 const Container = styled.div`
   display: grid;
