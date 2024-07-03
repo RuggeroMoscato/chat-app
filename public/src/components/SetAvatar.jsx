@@ -38,7 +38,7 @@ export default function SetAvatar() {
   };
   useEffect(() => {
     navigateLogin();
-  }, );
+  }, []);
   const setProfilePicture = async () => {
     if (selectedAvatar === undefined) {
       toast.error("Please select an avatar", toastOptions);
@@ -67,7 +67,7 @@ export default function SetAvatar() {
   
   useEffect(() => {
     getFetch();
-  });
+  },[]);
   return (
     <>
       {isLoading ? (
