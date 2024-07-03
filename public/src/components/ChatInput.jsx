@@ -25,7 +25,7 @@ export default function ChatInput({ handleSendMsg }) {
     }
   };
 
-  return ()=>{
+  return (
     <Container>
       <div className="button-container">
         <div className="emoji">
@@ -45,7 +45,7 @@ export default function ChatInput({ handleSendMsg }) {
         </button>
       </form>
     </Container>
-  };
+  );
 }
 
 const Container = styled.div`
