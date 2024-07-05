@@ -10,7 +10,6 @@ export default function ChatContainer({ currentChat, socket }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
-
   const getFetch = async () => {
     const data = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
@@ -24,7 +23,7 @@ export default function ChatContainer({ currentChat, socket }) {
   
   useEffect(() => {
     getFetch();
-  }, []);
+  }, [currentChat]);
   useEffect(() => {
     const getCurrentChat = async () => {
       if (currentChat) {
@@ -35,7 +34,7 @@ export default function ChatContainer({ currentChat, socket }) {
     };
     getCurrentChat();
   }, [currentChat]);
-  
+
   const handleSendMsg = async (msg) => {
     const data = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
@@ -50,12 +49,12 @@ export default function ChatContainer({ currentChat, socket }) {
       to: currentChat._id,
       message: msg,
     });
-  
+
     const msgs = [...messages];
     msgs.push({ fromSelf: true, message: msg });
     setMessages(msgs);
   };
-  
+
   useEffect(() => {
     if (socket.current) {
       socket.current.on("msg-recieve", (msg) => {
@@ -63,15 +62,15 @@ export default function ChatContainer({ currentChat, socket }) {
       });
     }
   }, []);
-  
+
   useEffect(() => {
     arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage]);
-  
+
   useEffect(() => {
-    scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-  
+
   return (
     <Container>
       <div className="chat-header">

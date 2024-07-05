@@ -20,6 +20,7 @@ export default function Contacts({ contacts, changeChat }) {
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
     changeChat(contact);
+    
   };
   return (
     <>
@@ -39,6 +40,7 @@ export default function Contacts({ contacts, changeChat }) {
                   }`}
                   onClick={() => changeCurrentChat(index, contact)}
                 >
+                 {/* Il problema è qui */}
                   <div className="avatar">
                     <img
                       src={`data:image/svg+xml;base64,${contact.avatarImage}`}
